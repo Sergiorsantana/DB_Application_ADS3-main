@@ -23,7 +23,6 @@ conexao.connect(function(error){
 });
 
 
-
 app.get('/', (req, res) => {
     res.write('Hello World!');
     res.end('Nota 10');     
