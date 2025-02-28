@@ -1,0 +1,30 @@
+{
+  "name": "db_application_cc3-main",
+  "version": "1.0.0",
+  "description": "Aplicação DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sergiorsantana/DB_Application_CC3.git"
+  },
+  "keywords": [
+    "Node",
+    "Express.js",
+    "Nodemon",
+    "Bd",
+    "MySQL"
+  ],
+  "author": "Santana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sergiorsantana/DB_Application_CC3/issues"
+  },
+  "homepage": "https://github.com/Sergiorsantana/DB_Application_CC3#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
