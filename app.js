@@ -11,6 +11,11 @@ const mysql = require('mysql2');
 //app é o servidor web
 const app = express();
 
+//adicionar Bootstrap
+app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
+
+
+
 //Configuração do express para usar o handlebars
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
