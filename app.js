@@ -2,6 +2,9 @@
 
 const express = require ('express');
 
+//Impostar módulo flieupload
+const fileUpload = require('express-fileupload');
+
 //Importar módulo express-handlebars
 const { engine } = require ('express-handlebars');
 
@@ -10,6 +13,9 @@ const mysql = require('mysql2');
 
 //app é o servidor web
 const app = express();
+
+//Habilitando o upload de arquivos
+app.use(fileUpload());
 
 //adicionar Bootstrap
 app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
@@ -48,11 +54,23 @@ app.get('/', function(req, res) {
 
     });
 
-    //Rota para salvar os dados do formulário ou rota de cadastro
-    app.post('/cadastrar', function(req, res){
-        console.log(req.body);
-        res.end();
+//Rota para salvar os dados do formulário ou rota de cadastro
+    app.post('/cadastrar', function (req, res) {
+        if (!req.files || !req.files.imagem) {
+            return res.status(400).send('Nenhum arquivo foi enviado.');
+        }
+    
+        const imagem = req.files.imagem;
+        const uploadPath = __dirname + '/imagens/' + imagem.name;
+    
+        imagem.mv(uploadPath, function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.send('Arquivo enviado com sucesso!');
         });
+    });
     
 
+    //Servidor
 app.listen(8080);
