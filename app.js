@@ -24,6 +24,10 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+// manipulação de dados via rotas
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
 //Configuração da conexão com o banco de dados
 const conexao = mysql.createConnection({
     host: 'localhost',
@@ -43,5 +47,12 @@ app.get('/', function(req, res) {
     res.render('formulario');    //renderiza o arquivo formulario.handlebars
 
     });
+
+    //Rota para salvar os dados do formulário ou rota de cadastro
+    app.post('/cadastrar', function(req, res){
+        console.log(req.body);
+        res.end();
+        });
+    
 
 app.listen(8080);
