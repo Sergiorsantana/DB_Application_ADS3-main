@@ -1,12 +1,20 @@
 //console.log('Hello World!')
 
-const express = require('express');
+const express = require ('express');
+
+//Importar módulo express-handlebars
+const { engine } = require ('express-handlebars');
 
 //importar módulo mysql
 const mysql = require('mysql2');
 
 //app é o servidor web
 const app = express();
+
+//Configuração do express para usar o handlebars
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 //Configuração da conexão com o banco de dados
 const conexao = mysql.createConnection({
@@ -22,10 +30,9 @@ conexao.connect(function(error){
     console.log('Conexão com o banco de dados realizada com sucesso!');
 });
 
-
-app.get('/', (req, res) => {
-    res.write('Hello World!');
-    res.end('Nota 10');     
+//Rota principal
+app.get('/', function(req, res) {
+    res.render('formulario');    //renderiza o arquivo formulario.handlebars
 
     });
 
