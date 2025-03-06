@@ -6,6 +6,8 @@ const express = require ('express');
 const fileUpload = require('express-fileupload');
 
 //Importar módulo express-handlebars
+//A sintaxe { engine } é desestruturação de objeto. Isso significa que require('express-handlebars') retorna um objeto, e estamos extraindo apenas a propriedade engine desse objeto.
+//O que é express-handlebars? é um template engine para o framework Express. Ele permite a criação de páginas dinâmicas no servidor utilizando o Handlebars como mecanismo de renderização.
 const { engine } = require ('express-handlebars');
 
 //importar módulo mysql
