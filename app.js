@@ -55,20 +55,13 @@ app.get('/', function(req, res) {
     });
 
 //Rota para salvar os dados do formulário ou rota de cadastro
-    app.post('/cadastrar', function (req, res) {
-        if (!req.files || !req.files.imagem) {
-            return res.status(400).send('Nenhum arquivo foi enviado.');
-        }
-    
-        const imagem = req.files.imagem;
-        const uploadPath = __dirname + '/imagens/' + imagem.name;
-    
-        imagem.mv(uploadPath, function (err) {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.send('Arquivo enviado com sucesso!');
-        });
+    app.post('/cadastrar', function(req, res) {
+        console.log(req.body);  //exibe no console os dados do formulário
+        console.log(req.files); //exibe no console os arquivos do formulário
+        
+
+        req.files.imagem.mv(__dirname+'/imagens/'+req.files.imagem.name);
+        res.send('Arquivo recebido com sucesso!');
     });
     
 
