@@ -7,15 +7,16 @@ const express = require('express');
 const mysql = require('MySQL2');
 
 //4.Importar módulo express-handlebars
-import { engine } from 'express-handlebars';
-
-//4.1 Configuração do handlebars
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
-app.set('views', './views');
+const { engine } = require('express-handlebars');
 
 // 2.1 App
 const app = express();
+
+//4.1 Configuração do express - handlebars
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 //3.1 Conexão com o banco de dados
 const conexao = mysql.createConnection({
@@ -32,9 +33,14 @@ conexao.connect(function(erro){
 });
 
 // 2.2 Rota de teste
+//app.get('/', function(req, res){
+ //   res.write('Hello World!');
+ //   res.end();
+//}); 
+
+//4.2 Rota principal
 app.get('/', function(req, res){
-    res.write('Hello World!');
-    res.end();
+    res.render('formulario');
 });
 
 // Servidor
