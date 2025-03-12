@@ -12,6 +12,9 @@ const { engine } = require('express-handlebars');
 // 2.1 App
 const app = express();
 
+//5. Adcionar Bootstrap
+app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
+
 //4.1 Configuração do express - handlebars
 
 app.engine('handlebars', engine());
