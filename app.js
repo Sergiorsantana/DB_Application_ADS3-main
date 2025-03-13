@@ -15,7 +15,7 @@ const app = express();
 //5. Adcionar Bootstrap
 app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
 
-// 6. Adcionar CSS
+// 6. Adicionar CSS
 
 app.use('/css', express.static('./css'));
 
@@ -24,6 +24,10 @@ app.use('/css', express.static('./css'));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
+
+//8. Manipulação de dados via rotas
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 //3.1 Conexão com o banco de dados
 const conexao = mysql.createConnection({
@@ -49,6 +53,13 @@ conexao.connect(function(erro){
 app.get('/', function(req, res){
     res.render('formulario');
 });
+
+//7.Rota de Cadastro
+app.post('/Cadastrar', function(req, res){
+    console.log(req.body);
+    res.end();
+    });
+
 
 // Servidor
 app.listen(8080);
