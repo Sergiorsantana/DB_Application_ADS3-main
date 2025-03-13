@@ -15,6 +15,10 @@ const app = express();
 //5. Adcionar Bootstrap
 app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
 
+// 6. Adcionar CSS
+
+app.use('/css', express.static('./css'));
+
 //4.1 Configuração do express - handlebars
 
 app.engine('handlebars', engine());
