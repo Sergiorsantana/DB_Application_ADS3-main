@@ -62,12 +62,24 @@ app.get('/', function(req, res){
 
 //7.Rota de Cadastro
 app.post('/Cadastrar', function(req, res){
-    console.log(req.body);
-    console.log(req.files.imagem.name); //11.Nome do arquivo
+    //10. Obter os dados que serão utilizados para cadstro
+    let nome = req.body.nome;
+    let valor = req.body.valor;
+    let imagem = req.files.imagem.name;
+    
+    // 10.1 Estrutura SQL
+    let sql = `INSERT INTO produtos(nome, valor, imagem) VALUES('${nome}', '${valor}', '${imagem}')`;
+    //Executar o comando SQL
+    conexao.query(sql, function(erro, resultado){
+        if(erro) throw erro;
+        //10.2 Upload da imagem 
+        req.files.imagem.mv(__dirname + '/imagem/' + req.files.imagem.name);
+        console.log('Produto cadastrado com sucesso!');
+        });
 
-    //12. Upload do arquivo
-    req.files.imagem.mv(__dirname + '/imagem/' + req.files.imagem.name);
-    res.end();
+        //10.3Retornar para rota principal
+        res.redirect('/');
+
     });
 
 
