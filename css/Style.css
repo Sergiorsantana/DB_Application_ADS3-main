@@ -1,12 +1,24 @@
 form{
     margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    text-align:  center;
-    background-color: #4a5764;
+    text-align: center;
 }
 
 form input{
-    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card{
+    margin-top: 40px;
+    padding: 5px;
+}
+
+.textos{
+    display: flex;
+    justify-content:space-around;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.card a{
+    margin-top: 5px;
 }
