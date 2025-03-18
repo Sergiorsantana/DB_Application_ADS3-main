@@ -25,6 +25,9 @@ app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
 
 app.use('/css', express.static('./css'));
 
+//Referenciar a pasta de imagenm
+app.use('/imagem', express.static('./imagem'));
+
 //4.1 Configuração do express - handlebars
 
 app.engine('handlebars', engine());
@@ -57,7 +60,14 @@ conexao.connect(function(erro){
 
 //4.2 Rota principal
 app.get('/', function(req, res){
-    res.render('formulario');
+    //11 SQL
+    let sql = 'SELECT * FROM produtos';
+    //11.1 Executar o comando SQL
+    conexao.query(sql, function(erro, resultado){
+        res.render('formulario', {produtos:resultado});
+    });
+
+   
 });
 
 //7.Rota de Cadastro
